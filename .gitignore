@@ -1,0 +1,12 @@
+modules/
+lib/
+**/__history/
+**/__recovery/
+**/Win32/
+src/*.~*
+
+*.dproj
+*.dproj.local
+*.identcache
+
+*.res
