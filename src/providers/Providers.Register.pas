@@ -21,11 +21,11 @@ type
     { Private declarations }
   public
     { Public declarations }
+    constructor Create; reintroduce;
     function Append(const AJson: TJSONObject): Boolean; virtual;
     function Update(const AJson: TJSONObject): Boolean; virtual;
     function Delete: Boolean; virtual;
-    function ListAll(const AParams: TDictionary<String, String>)
-      : TFDQuery; virtual;
+    function ListAll(const AParams: TDictionary<String, String>): TFDQuery; virtual;
     function GetById(const AId: String): TFDQuery; virtual;
     function GetRecordCount: Int64; virtual;
   end;
@@ -38,7 +38,9 @@ implementation
 uses DataSet.Serialize;
 
 {%CLASSGROUP 'System.Classes.TPersistent'}
+
 {$R *.dfm}
+
 { TProvidersRegister }
 
 function TProvidersRegister.Append(const AJson: TJSONObject): Boolean;
@@ -47,6 +49,11 @@ begin
   qRegister.Open();
   qRegister.LoadFromJSON(AJson, False);
   Result := qRegister.ApplyUpdates(0) = 0;
+end;
+
+constructor TProvidersRegister.Create;
+begin
+  inherited Create(nil);
 end;
 
 function TProvidersRegister.Delete: Boolean;
@@ -69,7 +76,8 @@ begin
   Result := qRecordCountCOUNT.AsLargeInt;
 end;
 
-function TProvidersRegister.ListAll(const AParams: TDictionary<String, String>): TFDQuery;
+function TProvidersRegister.ListAll(const AParams: TDictionary<String, String>)
+  : TFDQuery;
 begin
   if (AParams.ContainsKey('limit')) then
   begin
