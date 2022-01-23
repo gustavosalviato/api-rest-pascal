@@ -22,7 +22,7 @@ inherited ServiceClient: TServiceClient
   end
   inherited qSelect: TFDQuery
     SQL.Strings = (
-      'SELECT C.ID, C.NOME, C.STATUS FROM CLIENTE C')
+      'SELECT C.ID, C.NOME, C.STATUS FROM CLIENTE C WHERE 1 = 1')
     object qSelectid: TLargeintField
       FieldName = 'id'
       Origin = 'id'
@@ -40,6 +40,6 @@ inherited ServiceClient: TServiceClient
   end
   inherited qRecordCount: TFDQuery
     SQL.Strings = (
-      'SELECT COUNT(C.ID) FROM CLIENTE C')
+      'SELECT COUNT(C.ID) FROM CLIENTE C WHERE 1 = 1')
   end
 end

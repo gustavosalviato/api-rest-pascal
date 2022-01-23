@@ -52,9 +52,9 @@ begin
 
   if (AParams.ContainsKey('nome')) then
   begin
-    qSelect.SQL.Add('AND LOWER (NOME) LIKE :nome');
+    qSelect.SQL.Add('AND LOWER(NOME) LIKE :nome');
     qSelect.ParamByName('nome').AsString := '%' + AParams.Items['nome'] + '%';
-    qRecordCount.SQL.Add('AND LOWER (NOME) LIKE :nome');
+    qRecordCount.SQL.Add('AND LOWER(NOME) LIKE :nome');
     qRecordCount.ParamByName('nome').AsString := '%' + AParams.Items['nome'] + '%';
   end;
 
