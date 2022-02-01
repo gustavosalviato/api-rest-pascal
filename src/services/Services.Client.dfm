@@ -1,5 +1,4 @@
 inherited ServiceClient: TServiceClient
-  PixelsPerInch = 96
   inherited qRegister: TFDQuery
     SQL.Strings = (
       'SELECT C.ID, C.NOME, C.STATUS FROM CLIENTE C')

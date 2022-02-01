@@ -1,5 +1,4 @@
 inherited ServiceProduct: TServiceProduct
-  PixelsPerInch = 96
   inherited qRegister: TFDQuery
     SQL.Strings = (
       

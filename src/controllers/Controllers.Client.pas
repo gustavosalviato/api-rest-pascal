@@ -37,7 +37,7 @@ begin
   try
     if (FService.GetById(FClientID).IsEmpty) then
     begin
-      raise EHorseException.Create(THTTPStatus.NotFound,'record not found');
+      raise EHorseException.Create(THTTPStatus.NotFound, 'record not found');
     end;
     Res.Send(FService.qRegister.ToJSONObject());
   finally
@@ -46,7 +46,7 @@ begin
 
 end;
 
-procedure RegisterClient(Req: THorseRequest; Res: THorseResponse; Next: TProc);
+procedure Append(Req: THorseRequest; Res: THorseResponse; Next: TProc);
 var
   FReturn : TJSONObject;
   FService: TServiceClient;
@@ -64,7 +64,7 @@ begin
 
 end;
 
-procedure UpdateClient(Req: THorseRequest; Res: THorseResponse; Next: TProc);
+procedure Update(Req: THorseRequest; Res: THorseResponse; Next: TProc);
 var
   FClientID: String;
   FService: TServiceClient;
@@ -89,7 +89,7 @@ begin
 
 end;
 
-procedure DeleteClient(Req: THorseRequest; Res: THorseResponse; Next: TProc);
+procedure Delete(Req: THorseRequest; Res: THorseResponse; Next: TProc);
 var
   FService: TServiceClient;
   FClientID : String;
@@ -116,9 +116,9 @@ procedure Registry;
 begin
   THorse.Get('/clients', ListAll);
   THorse.Get('/clients/:id', GetById);
-  THorse.Post('/clients', RegisterClient);
-  THorse.Put('/clients/:id', UpdateClient);
-  THorse.Delete('/clients/:id', DeleteClient);
+  THorse.Post('/clients', Append);
+  THorse.Put('/clients/:id', Update);
+  THorse.Delete('/clients/:id', Delete);
 end;
 
 end.

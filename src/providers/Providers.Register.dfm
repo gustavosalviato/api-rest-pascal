@@ -1,5 +1,4 @@
 inherited ProvidersRegister: TProvidersRegister
-  PixelsPerInch = 96
   inherited FDPhysPgDriverLink: TFDPhysPgDriverLink
     Left = 152
   end

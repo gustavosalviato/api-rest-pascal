@@ -13,13 +13,16 @@ uses
   Services.Product in 'src\services\Services.Product.pas' {ServiceProduct: TDataModule},
   Controllers.Product in 'src\controllers\Controllers.Product.pas',
   Services.Client in 'src\services\Services.Client.pas' {ServiceClient: TDataModule},
-  Controllers.Client in 'src\controllers\Controllers.Client.pas';
+  Controllers.Client in 'src\controllers\Controllers.Client.pas',
+  Services.Order in 'src\services\Services.Order.pas' {ServiceOrder: TDataModule},
+  Controllers.Order in 'src\controllers\Controllers.Order.pas';
 
 begin
   THorse
   .Use(HandleException)
   .Use(Jhonson());
 
+  Controllers.Order.Registry;
   Controllers.Product.Registry;
   Controllers.Client.Registry;
 

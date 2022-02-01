@@ -7,7 +7,6 @@ uses Horse;
 procedure Registry;
 
 implementation
-
 uses
   Services.Product, System.JSON, DataSet.Serialize, Data.DB;
 
@@ -46,7 +45,7 @@ begin
   end;
 end;
 
-procedure DeleteProduct(Req: THorseRequest; Res: THorseResponse; Next: TProc);
+procedure Delete(Req: THorseRequest; Res: THorseResponse; Next: TProc);
 var
   FService: TServiceProduct;
   FProductID : String;
@@ -68,7 +67,7 @@ begin
   end;
 end;
 
-procedure UpdateProduct(Req: THorseRequest; Res: THorseResponse; Next: TProc);
+procedure Update(Req: THorseRequest; Res: THorseResponse; Next: TProc);
 var
   FProductID : String;
   FService: TServiceProduct;
@@ -95,7 +94,7 @@ begin
   end;
 end;
 
-procedure RegisterProduct(Req: THorseRequest; Res: THorseResponse; Next: TProc);
+procedure Append(Req: THorseRequest; Res: THorseResponse; Next: TProc);
 var
   FService: TServiceProduct;
   FProduct: TJSONObject;
@@ -117,9 +116,9 @@ procedure Registry;
 begin
   THorse.Get('/products', ListAll);
   THorse.Get('/products/:id', GetById);
-  THorse.Delete('/products/:id', DeleteProduct);
-  THorse.Put('/products/:id', UpdateProduct);
-  THorse.Post('/products', RegisterProduct);
+  THorse.Delete('/products/:id', Delete);
+  THorse.Put('/products/:id', Update);
+  THorse.Post('/products', Append);
 end;
 
 end.
